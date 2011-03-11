@@ -1,0 +1,7 @@
+set go-=T
+set bg=dark
+if &background == "dark"
+  hi normal guibg=black
+  set transp=8
+endif
+set statusline=[%n]\ %<%.99f\ %h%w%m%r%y%{exists('g:loaded_rvm')?rvm#statusline():''}%=%-16(\ %l,%c-%v\ %)%P 
