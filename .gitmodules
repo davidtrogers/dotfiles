@@ -7,3 +7,6 @@
 [submodule ".vim/vim-fugitive"]
 	path = .vim/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
+[submodule ".vim/gitsubs/nerdtree"]
+	path = .vim/gitsubs/nerdtree
+	url = git://github.com/scrooloose/nerdtree.git
