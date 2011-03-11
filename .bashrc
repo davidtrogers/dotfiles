@@ -17,7 +17,7 @@ alias ll='ls -ahl'
 alias git='~/bin/hub'
 
 #env vars
-export PATH="~/.rvm/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin/:/usr/local/sbin/:/opt/local/lib/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/usr/local/mysql/bin"
+export PATH="~/bin:~/.rvm/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin/:/usr/local/sbin/:/opt/local/lib/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/usr/local/mysql/bin"
 # export PATH=$PATH:/opt/local/bin:/Users/macajueli/.gem/ruby/1.8/bin:/usr/local/mysql-5.1.41-osx10.5-x86/bin:/Users/macajueli/dev/android-sdk-mac_86/tools:/Users/macajueli/dev/android-sdk-mac_86/
 export ARCHFLAGS="-arch x86_64"
 export DYLD_LIBRARY_PATH="/opt/local/lib"
