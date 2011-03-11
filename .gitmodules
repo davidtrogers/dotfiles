@@ -4,8 +4,8 @@
 [submodule "dotfiles/r00k"]
 	path = dotfiles/r00k
 	url = git://github.com/r00k/dotfiles.git
-[submodule ".vim/vim-fugitive"]
-	path = .vim/vim-fugitive
+[submodule ".vim/gitsubs/vim-fugitive"]
+	path = .vim/gitsubs/vim-fugitive
 	url = git://github.com/tpope/vim-fugitive.git
 [submodule ".vim/gitsubs/nerdtree"]
 	path = .vim/gitsubs/nerdtree
