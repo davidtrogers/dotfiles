@@ -9,11 +9,12 @@ RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
 GREEN="\[\033[0;32m\]"
 
-PS1="\n$RED\$(/bin/date '+%m-%d-%Y %H:%M:%S') \w\n$YELLOW\$(parse_git_branch)$GREEN $( ~/.rvm/bin/rvm-prompt)$RED->$GREEN"
+PS1="\n$RED\$(/bin/date '+%m-%d-%Y %H:%M:%S') \w\n$YELLOW\$(parse_git_branch)$GREEN $(~/.rvm/bin/rvm-prompt)$RED->$GREEN"
 
 #aliases
 alias ls='ls -G'
 alias ll='ls -ahl'
+alias git='~/bin/hub'
 
 #env vars
 export PATH="~/.rvm/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin/:/usr/local/sbin/:/opt/local/lib/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/usr/local/mysql/bin"
