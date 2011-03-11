@@ -1,0 +1,9 @@
+[submodule "dotfiles/rtomayko"]
+	path = dotfiles/rtomayko
+	url = git://github.com/rtomayko/dotfiles.git
+[submodule "dotfiles/r00k"]
+	path = dotfiles/r00k
+	url = git://github.com/r00k/dotfiles.git
+[submodule ".vim/vim-fugitive"]
+	path = .vim/vim-fugitive
+	url = git://github.com/tpope/vim-fugitive.git
