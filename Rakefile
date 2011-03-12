@@ -9,7 +9,6 @@ NERDTREE=ROOT+"/vendor/nerdtree"
 FUGITIVE=ROOT+"/vendor/vim-fugitive"
 
 # I want to:
-#   [Done] git submodule foreach update
 #   vim
 #     cp zipfiles from remote repos/sites
 #     unzip said zipfiles in the right place (non-git repos)
@@ -20,14 +19,15 @@ FUGITIVE=ROOT+"/vendor/vim-fugitive"
 task :default => [:update]
 
 task :update do
-  # puts `git submodule foreach update`
-  Dir.chdir(ROOT+'/vendor')
   subs = JSON.parse(`cat submodules.json`)
-  subs.each do |sub|
-    mkdir_p sub["path"]
-    `git clone #{sub["url"]}`
-    cd sub["path"]
-    `git pull origin master`
+  Dir.chdir('vendor') do
+    subs.each do |sub|
+      sh "git clone #{sub['url']} '#{sub['path']}'"
+      Dir.chdir(sub["path"]) do
+        `git pull #{sub["url"]} master`
+        puts pwd
+      end
+    end
   end
 
   #NERDtree
@@ -38,4 +38,6 @@ task :update do
   #Fugitive
   fugitive = {:plugin => 'fugitive.vim', :doc => 'fugitive.txt'}
   fugitive.each_key {|k| ln_sf("#{FUGITIVE}/#{k}/#{fugitive[k]}", "#{VIM_ROOT}/#{k}/#{fugitive[k]}") }
+
+  ln_sf(ROOT+"/vendor/rtomayko/dotfiles/bin", ROOT+"/vendor/bin")
 end
