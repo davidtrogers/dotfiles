@@ -22,10 +22,16 @@ task :update do
   subs = JSON.parse(`cat submodules.json`)
   Dir.chdir('vendor') do
     subs.each do |sub|
-      sh "git clone #{sub['url']} '#{sub['path']}'"
-      Dir.chdir(sub["path"]) do
-        `git pull #{sub["url"]} master`
-        puts pwd
+      if Dir[sub['path']].empty?
+        sh "git clone #{sub['url']} '#{sub['path']}'"
+      else
+        Dir.chdir(sub["path"]) do
+          begin
+            sh "git pull #{sub['url']} master"
+          rescue Exception => e
+            sh "git pull #{sub['url']} #{sub['path']}"
+          end
+        end
       end
     end
   end
