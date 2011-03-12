@@ -45,5 +45,5 @@ task :update do
   fugitive = {:plugin => 'fugitive.vim', :doc => 'fugitive.txt'}
   fugitive.each_key {|k| ln_sf("#{FUGITIVE}/#{k}/#{fugitive[k]}", "#{VIM_ROOT}/#{k}/#{fugitive[k]}") }
 
-  ln_sf(ROOT+"/vendor/rtomayko/dotfiles/bin", ROOT+"/vendor/bin")
+  ln_sf(ROOT+"/vendor/rtomayko/bin", ROOT+"/vendor/bin")
 end
