@@ -1,10 +1,12 @@
 require 'rubygems'
 require 'rake'
 require 'ruby-debug'
+require 'json'
+
 ROOT=File.dirname(__FILE__)
 VIM_ROOT=ROOT+"/.vim"
-NERDTREE=VIM_ROOT+"/gitsubs/nerdtree"
-FUGITIVE=VIM_ROOT+"/gitsubs/vim-fugitive"
+NERDTREE=ROOT+"/vendor/nerdtree"
+FUGITIVE=ROOT+"/vendor/vim-fugitive"
 
 # I want to:
 #   [Done] git submodule foreach update
@@ -18,7 +20,15 @@ FUGITIVE=VIM_ROOT+"/gitsubs/vim-fugitive"
 task :default => [:update]
 
 task :update do
-  puts `git submodule foreach update`
+  # puts `git submodule foreach update`
+  Dir.chdir(ROOT+'/vendor')
+  subs = JSON.parse(`cat submodules.json`)
+  subs.each do |sub|
+    mkdir_p sub["path"]
+    `git clone #{sub["url"]}`
+    cd sub["path"]
+    `git pull origin master`
+  end
 
   #NERDtree
   Dir.chdir NERDTREE
