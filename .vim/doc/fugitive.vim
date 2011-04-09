@@ -1,0 +1,1 @@
+/Users/macajueli/.vim/gitsubs/vim-fugitive/doc/fugitive.vim

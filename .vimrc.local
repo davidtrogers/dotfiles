@@ -14,7 +14,7 @@ augroup END
 
 let mapleader = ","
 
-map <Leader>t :CommandT<CR>
+map <Leader>g :CommandT<CR>
 map <Leader>h :FuzzyFinderTextMate<CR>
 vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 map <Leader>c :Rcontroller 
@@ -80,6 +80,7 @@ set directory=/tmp " Don't clutter my dirs up with swp and tmp files
 set gdefault " assume the /g flag on :s substitutions to replace all matches in a line
 set autoindent " always set autoindenting on
 set term=xterm-color
+set binary
 
 " Edit another file in the same directory as the current file
 " uses expression to extract path from current file's path
@@ -129,7 +130,7 @@ command Q q " Bind :Q to :q
 
 set statusline+=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
-colorscheme darkblue
+colorscheme candycode
 " ========================================================================
 " End of things set by me.
 " ========================================================================

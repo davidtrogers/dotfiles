@@ -1,0 +1,1 @@
+/Users/macajueli/vendor/vim-fugitive/plugin/fugitive.vim
