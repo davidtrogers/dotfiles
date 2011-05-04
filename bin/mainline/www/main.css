@@ -1,0 +1,53 @@
+body
+{
+	background: white;
+	color: #404040;
+	margin-bottom: 2em;
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+
+a, a:visited
+{
+	border-bottom: 1px dotted #03c;
+	background: inherit;
+	color: #03c;
+	text-decoration: none;
+}
+
+#screenshots
+{
+	margin: 0;
+	padding: 0;
+}
+#screenshots li
+{
+	display: inline;
+	list-style: none;
+}
+#screenshots a
+{
+	border-bottom: none;
+}
+#screenshots img
+{
+	border: 0;
+}
+
+.screencap {
+  background-color: black;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  color: #aaa;
+  width: 50em;
+  margin-bottom: 1em;
+}
+
+.yellow { color: yellow; }
+.green { color: green; }
+.cyan { color: #0ef3eb; }
+.purple { color: #7633cc; }
+.red { color: red; }

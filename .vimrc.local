@@ -2,6 +2,7 @@
 " Ruby stuff
 " ================
 syntax on                 " Enable syntax highlighting
+call pathogen#runtime_append_all_bundles()
 filetype plugin indent on " Enable filetype-specific indenting and plugins
 
 augroup myfiletypes
@@ -106,6 +107,18 @@ let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;
 
 let g:CommandTAcceptSelectionTabMap='<C-o>'
 let g:CommandTCancelMap='<C-x>'
+
+" flog
+"exe g:flog_enable
+let g:flog_low_color='#a5c261'
+let g:flog_medium_color='#ffc66d'
+let g:flog_high_color='#cc7833'
+let g:flog_background_color='#323232'
+let g:flog_medium_limit=10
+let g:flog_high_limit=20
+
+"livejs
+"autocmd BufWriteCmd '*.scss' foo
 
 "ruby
 autocmd FileType ruby,eruby set omnifunc=rubycomplete#Complete

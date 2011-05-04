@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>William's miscellaneous git tools</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <link rel="stylesheet" href="main.css" type="text/css" />
+  </head>
+
+  <body>
+    <h1><a href="http://masanjin.net/">William</a>'s miscellaneous git tools</h1>
+
+    <p> Here are a bunch of git-related tools I've found useful at some
+    point. The git repository for all of these is cloneable
+    at <code>git://gitorious.org/willgit/mainline.git/</code> (<a href="http://gitorious.org/willgit/mainline/commits/master">browse</a>).
+    </p>
+
+    <p>
+    <ul>
+    <li><a href="#git-wtf">git-wtf</a>: understand the current state of your git repository.</li>
+    <li><a href="#git-publish-branch">git-publish-branch</a>: publish a branch to a remote repository.</li>
+    <li><a href="#git-rank-contributors">git-rank-contributors</a>: rank all authors by patch size.</li>
+    <li><a href="#git-show-merges">git-show-merges</a>: show which branches are merged into the current branch.</li>
+    <li><a href="#git-walkthrough-add">git-walkthrough-add</a>: (deprecated) like <code>git add -p</code>.</li>
+    </ul>
+    </p>
+
+    <h2><a name="git-wtf">git-wtf</a></h2>
+
+    <p> <a href="git-wtf">git-wtf</a> is a script to display the state of your repository in a readable and easy-to-scan
+format. </p>
+
+<p>git-wtf tries to ease the task of having many git branches. It's also useful
+for getting a summary of how tracking branches relate to a remote server.</p>
+
+<p>git-wtf shows you:<ul>
+<li> How your branch relates to the remote repo, if it's a tracking branch.</li>
+<li> How your branch relates to non-feature ("version") branches, if it's a
+  feature branch.</li>
+<li> How your branch relates to the feature branches, if it's a version branch.</li>
+</ul>
+</p>
+<p>For each of these relationships, git-wtf displays the commits pending on
+either side, if any. It displays checkboxes along the side for easy scanning
+of merged/non-merged branches.</p>
+
+<p>If you're working against a remote repo, git-wtf is best used between a 'git
+fetch' and a 'git merge' (or 'git pull' if you don't mind the redundant
+network access).</p>
+
+    <p>Examples:
+
+    <div class="screencap"><code><pre>
+$ git wtf
+Local branch: <span class="green">master</span>
+[<span class="green">x</span>] in sync with remote
+Remote branch: <span class="cyan">origin/master</span> (git@gitorious.org:willgit/mainline.git)
+[<span class="green">x</span>] in sync with local
+
+Feature branches:
+{ } <span class="cyan">origin/experimental</span> is NOT merged in (1 commit ahead)
+    - some tweaks i'm playing around with [<span class="yellow">80e5da1</span>]
+{ } <span class="cyan">origin/dont-assume-origin</span> is NOT merged in (1 commit ahead)
+    - guess primary remote repo from git config instead of assuming "origin" [<span class="yellow">23c96f1</span>]
+$</pre></code></div>
+
+    <div class="screencap"><code><pre>$ git wtf
+Local branch: <span class="green">master</span>
+[ ] NOT in sync with remote (needs push)
+    - Add before-search hook, for shortcuts for custom search queries. [<span class="yellow">4430d1b</span>] (<span class="purple">edwardzyang@...</span>; 7 days ago)
+Remote branch: <span class="cyan">origin/master</span> (git@gitorious.org:sup/mainline.git)
+[<span class="green">x</span>] in sync with local
+
+Feature branches:
+{ } <span class="cyan">origin/release-0.8.1</span> is NOT merged in (1 commit ahead)
+    - bump to 0.8.1 [<span class="yellow">dab43fb</span>] (<span class="purple">wmorgan-sup@...</span>; 2 days ago)
+[ ] <span class="green">labels-before-subj</span> is NOT merged in (1 commit ahead)
+    - put labels before subject in thread index view [<span class="yellow">790b64d</span>] (<span class="purple">marka@...</span>; 4 weeks ago)
+{<span class="green">x</span>} <span class="cyan">origin/enclosed-message-display-tweaks</span> merged in
+(<span class="green">x</span>) <span class="green">experiment</span> merged in (only locally)
+
+<span class="red">NOTE</span>: working directory contains modified files
+$</pre></code></div>
+</p>
+
+    <h2><a name="git-publish-branch">git-publish-branch</a></h2>
+
+    <p> <a href="git-publish-branch">git-publish-branch</a> is a simple script
+    to ease the unnecessarily complex task of "publishing" a branch, i.e.,
+    taking a local branch, creating a reference to it on a remote repo, and
+    setting up the local branch to track the remote one, all in one go. </p>
+
+    <p> You give it a branch name, and that branch is published in your remote
+    repository. That's it. If you use <code>-d</code>, it will delete the
+    remote reference.</p>
+
+    <p>Useful if you publish your topic branches to the outside world.</p>
+
+    <h2><a name="git-rank-contributors">git-rank-contributors</a></h2>
+
+    <p> <a href="git-rank-contributors">git-rank-contributors</a> is a trivial
+    script that paws through your logs and ranks all the contributors by
+    the size of their diffs. As always, bigger is better!</p>
+
+    <p> If you use <code>-v</code>, you'll get the raw diff sizes.</p>
+
+    <p> If you use <code>-o</code>, you'll get high-tech email obfuscation.</p>
+
+    <p> Output with just <code>-o</code> may be suitable for piping into a
+    CREDITS file. It probably will require some editing in case people submit
+    from more than one email address, though. </p>
+
+    <p> This is similar to <code>git shortlog -s -n --no-merges</code>, but counts diff size rather than number of commits. </p>
+
+    <h2><a name="git-show-merges">git-show-merges</a></h2>
+
+    <p> <a href="git-show-merges">git-show-merges</a> is a precursor to <a href="#git-wtf">git-wtf</a>.
+    It's a simple tool that shows you which branches have been merged in to the
+    current branch, and which haven't. That's it. You can also specify multiple
+    non-topic branches (merge branches?) on the commandline.</p>
+
+    <div class="screencap"><code><pre>
+$ git show-merges
+merged into next:
+  attachments
+  color
+  edit-as-new-fix
+  find-in-buffer-fix
+  maildir-speedup
+  non-ascii-message-id
+  release-0.5
+  reply-from-hook
+
+not merged into next: 
+  encoding-tweaking
+  imap-cache-headers
+  imap-share-connections
+  join-threads-bugfix
+  local-changes-only
+  master
+  mbox-parse-fix
+  ncurses-widechar
+  ncursesw
+  release-0.4
+  todo-updates
+
+$</pre></code></div>
+
+    <h2><a name="git-walkthrough-add">git-walkthrough-add</a> (deprecated)</h2>
+
+    <p> <i>In recent gits, <code>git add -p</code> does exactly what this tool
+    does. So I will not be putting a lot of energy into maintaining this any
+    more.</i> </p>
+
+    <p> <a href="git-wt-add">git-wt-add</a> is a darcs-style interactive staging script for git. It
+    walks you through unstaged changes on a hunk-by-hunk basis and allows you
+    to pick the ones you'd like staged. It features colorized diff output and a
+    full set of navigation and dispatch commands.  </p>
+
+    <p> git-wt-add is based on <a
+    href="http://thread.gmane.org/gmane.comp.version-control.git/41033">git-hunk-commit</a>
+    --darcs, which was very close to what I wanted, but wasn't quite it. In
+    general git-wt-add makes no attempt to conform to the real darcs interface,
+    but it's probably pretty close. </p>
+
+    <h2>Credit</h2>
+
+    <p>This collection of vaguely useful tools is brought to you by <a href="http://masanjin.net/">William Morgan</a> and the following honorable contributors:
+
+    <ul>
+      <li> David Soria Parra &lt;dsp@...&gt; </li>
+      <li> Wade Simmons &lt;wsimmons@...&gt; </li>
+      <li> Jeff Balogh &lt;its.jeff.balogh@...&gt; </li>
+      <li> Jordi Bunster &lt;jordi@...&gt; </li>
+    </ul>
+    </p>
+  </body>
+</html>

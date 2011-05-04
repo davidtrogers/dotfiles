@@ -11,18 +11,30 @@ GREEN="\[\033[0;32m\]"
 
 PS1="\n$RED\$(/bin/date '+%m-%d-%Y %H:%M:%S') \w\n$YELLOW\$(parse_git_branch)$GREEN \$(~/.rvm/bin/rvm-prompt)$RED->$GREEN"
 
+source ~/git-completion.bash
+
+set -o vi
+
 #aliases
+alias gco='git co'
+alias gci='git ci'
+alias grb='git rb'
+alias gwtf='~/bin/git-wtf'
+alias gsm='~/bin/git-show-merges'
+
 alias ls='ls -G'
 alias ll='ls -ahl'
 alias git='~/bin/hub'
 
 alias trails='AUTOSSH_POLL=15 autossh -M 5022 -t trails -fnt'
+alias trails1='AUTOSSH_POLL=15 autossh -M 5032 -t trailstest -fnt'
 alias irc='AUTOSSH_POLL=15 autossh -M 5012 -t irc -fnt'
 alias red='redis-server /usr/local/etc/redis.conf'
 alias be='bundle exec'
 alias nginx='sudo /usr/local/nginx/sbin/nginx'
 alias psg='ps aux |grep'
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
+alias htree='tree -H $(pwd) -o ~/.htree && open ~/.htree'
 
 #env vars
 # export AUTOSSH_POLL=15
