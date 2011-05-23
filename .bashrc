@@ -44,7 +44,7 @@ export PATH="~/bin:~/vendor/bin:~/.rvm/bin:/opt/local/bin:/opt/local/sbin:/usr/l
 export ARCHFLAGS="-arch x86_64"
 #export DYLD_LIBRARY_PATH="/opt/local/lib"
 export COMMAND_MODE="unix2003"
-export EDITOR=$(which mvim)
+export EDITOR='~/bin/mvim'
 
 #REE GC settings
 export RUBY_HEAP_MIN_SLOTS=1000000
