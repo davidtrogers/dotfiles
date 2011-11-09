@@ -3,14 +3,23 @@ function parse_git_branch {
   echo "("${ref#refs/heads/}")"
 }
 
+function rbenv_version {
+  rbenv rehash
+  rbenv=$(rbenv version | awk {'print $1'})
+  echo "${rbenv}"
+}
+
+export RBENV=$'rbenv version'
 BLUE="\[\033[1;34m\]"
 PURP="\[\033[1;35m\]"
 RED="\[\033[0;31m\]"
 YELLOW="\[\033[0;33m\]"
 GREEN="\[\033[1;32m\]"
 WHITE="\[\033[1;37m\]"
-
-PS1="\n$RED\$(/bin/date '+%m-%d-%Y %H:%M:%S') \w\n$YELLOW\$(parse_git_branch)$GREEN \$(~/.rvm/bin/rvm-prompt)$RED->$WHITE"
+PS1="\n$RED\$(/bin/date '+%m-%d-%Y %H:%M:%S') \w\n"
+PS1="$PS1$YELLOW\$(parse_git_branch) "
+PS1="$PS1$GREEN\$(rbenv_version) "
+PS1="$PS1$RED->$WHITE"
 
 source ~/git-completion.bash
 
@@ -39,17 +48,32 @@ alias smvim='sudo /Applications/MacVim.app/Contents/MacOS/MacVim '
 alias psg='ps aux |grep'
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 alias htree='tree -H $(pwd) -o ~/.htree && open ~/.htree'
-
+alias mdb='mongod run --config /usr/local/Cellar/mongodb/2.0.1-x86_64/mongod.conf'
 #env vars
 # export AUTOSSH_POLL=15
 export USER="Dave"
-export PATH="/Users/macajueli/bin:/Users/macajueli/vendor/bin:Users/macajueli/.rvm/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin/:/usr/local/sbin/:/opt/local/lib/:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/usr/local/mysql/bin:/Users/macajueli/dev/rubinius/bin"
-# export PATH=$PATH:/opt/local/bin:/Users/macajueli/.gem/ruby/1.8/bin:/usr/local/mysql-5.1.41-osx10.5-x86/bin:/Users/macajueli/dev/android-sdk-mac_86/tools:/Users/macajueli/dev/android-sdk-mac_86/
-export ARCHFLAGS="-arch x86_64"
-#export DYLD_LIBRARY_PATH="/opt/local/lib"
+
+#PATH
+export PATH=$HOME/.rbenv/bin
+export PATH=$PATH:$HOME/bin
+export PATH=$PATH:/bin
+export PATH=$PATH:/sbin
+export PATH=$PATH:/usr/local/bin/
+export PATH=$PATH:/usr/local/sbin/
+export PATH=$PATH:/usr/local/lib
+export PATH=$PATH:/usr/local/mysql/bin
+export PATH=$PATH:$HOME/vendor/bin
+export PATH=$PATH:/usr/bin
+export PATH=$PATH:/usr/sbin
+export PATH=$PATH:/usr/X11/bin
+# export PATH=$PATH:$HOME/dev/rubinius/bin
+
+# export ARCHFLAGS="-arch x86_64"
+export DYLD_LIBRARY_PATH="/usr/local/lib"
 export COMMAND_MODE="unix2003"
 export EDITOR='~/bin/mvim'
 export BUNDLE_WITHOUT='production'
+# export CC='/usr/bin/gcc-4.2'
 
 #REE GC settings
 export RUBY_HEAP_MIN_SLOTS=1000000
@@ -61,7 +85,7 @@ export RUBY_HEAP_FREE_MIN=500000
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
 
 #rvm magic
-if [[ -s /Users/macajueli/.rvm/scripts/rvm ]] ; then source /Users/macajueli/.rvm/scripts/rvm ; fi
-
+# if [[ -s /Users/macajueli/.rvm/scripts/rvm ]] ; then source /Users/macajueli/.rvm/scripts/rvm ; fi
 # declare -x IRBRC="/Users/macajueli/.rvm/rubies/ruby-1.8.7-p334/.irbrc"
-#
+
+eval "$(rbenv init -)"
