@@ -4,7 +4,8 @@
 syntax on                 " Enable syntax highlighting
 " call pathogen#runtime_append_all_bundles()
 call pathogen#infect()
-syntax on
+call pathogen#helptags()
+" syntax on
 filetype plugin indent on
 
 augroup myfiletypes
@@ -12,13 +13,14 @@ augroup myfiletypes
   autocmd!
   " autoindent with two spaces, always expand tabs
   autocmd FileType ruby,eruby,yaml set ai sw=2 sts=2 et
+  autocmd BufNewFile,BufRead *.html.erb set filetype=html.eruby
 augroup END
 " ================
 
 let mapleader = ","
 
 map <Leader>g :CommandT<CR>
-map <Leader>h :FuzzyFinderTextMate<CR>
+" map <Leader>h :FuzzyFinderTextMate<CR>
 vmap <Leader>b :<C-U>!git blame <C-R>=expand("%:p") <CR> \| sed -n <C-R>=line("'<") <CR>,<C-R>=line("'>") <CR>p <CR>
 map <Leader>c :Rcontroller 
 map <Leader>d odebugger<cr>puts 'debugger'<esc>:w<cr>
@@ -67,7 +69,7 @@ set nocompatible
 set backspace=indent,eol,start " allow backspacing over everything in insert mode
 set history=500		" keep 500 lines of command line history
 set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
+" set showcmd		" display incomplete commands
 set autoindent
 set showmatch
 set nowrap
@@ -110,7 +112,7 @@ set grepprg=ack
 :highlight PmenuSel ctermfg=black
 
 " Fuzzy finder: ignore stuff that can't be opened, and generated files
-let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**"
+" let g:fuzzy_ignore = "*.png;*.PNG;*.JPG;*.jpg;*.GIF;*.gif;vendor/**;coverage/**;tmp/**;rdoc/**"
 "let g:rubycomplete_rails = 1
 
 let g:CommandTAcceptSelectionTabMap='<C-o>'
@@ -118,12 +120,12 @@ let g:CommandTCancelMap='<C-x>'
 
 " flog
 "exe g:flog_enable
-let g:flog_low_color='#a5c261'
-let g:flog_medium_color='#ffc66d'
-let g:flog_high_color='#cc7833'
-let g:flog_background_color='#323232'
-let g:flog_medium_limit=10
-let g:flog_high_limit=20
+" let g:flog_low_color='#a5c261'
+" let g:flog_medium_color='#ffc66d'
+" let g:flog_high_color='#cc7833'
+" let g:flog_background_color='#323232'
+" let g:flog_medium_limit=10
+" let g:flog_high_limit=20
 
 "livejs
 "autocmd BufWriteCmd '*.scss' foo
