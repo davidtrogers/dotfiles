@@ -4,7 +4,7 @@ function parse_git_branch {
 }
 
 function rbenv_version {
-  rbenv rehash
+  # rbenv rehash
   rbenv=$(rbenv version | awk {'print $1'})
   echo "${rbenv}"
 }
@@ -49,6 +49,7 @@ alias psg='ps aux |grep'
 alias vim='/Applications/MacVim.app/Contents/MacOS/Vim'
 alias htree='tree -H $(pwd) -o ~/.htree && open ~/.htree'
 alias mdb='mongod run --config /usr/local/Cellar/mongodb/2.0.1-x86_64/mongod.conf'
+# alias gempath="gem environment |grep INSTALLATION | awk {'print $4'}"
 #env vars
 # export AUTOSSH_POLL=15
 export USER="Dave"
@@ -83,6 +84,8 @@ export RUBY_GC_MALLOC_LIMIT=1000000000
 export RUBY_HEAP_FREE_MIN=500000
 
 export PROMPT_COMMAND='echo -ne "\033]0;${PWD}\007"'
+
+# export GEM_PATH='echo -ne "gempath"'
 
 #rvm magic
 # if [[ -s /Users/macajueli/.rvm/scripts/rvm ]] ; then source /Users/macajueli/.rvm/scripts/rvm ; fi
