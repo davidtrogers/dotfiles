@@ -26,6 +26,8 @@ source ~/git-completion.bash
 set -o vi
 
 #aliases
+alias sshdserver='sudo /usr/sbin/sshd -f /private/etc/sshd_config'
+alias g='git'
 alias gco='git co'
 alias gci='git ci'
 alias grb='git rb'
