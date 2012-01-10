@@ -160,7 +160,7 @@ command Q q " Bind :Q to :q
 
 set statusline+=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
-colorscheme molokai
+colorscheme monokai "camo "molokai
 
 " autocmd FileType ruby let &l:tags = pathogen#legacyjoin(pathogen#uniq(
 "       \ pathogen#split(&tags) +
