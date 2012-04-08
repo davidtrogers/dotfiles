@@ -19,6 +19,11 @@ augroup END
 
 let mapleader = ","
 
+map <C-H> <C-W>h
+map <C-J> <C-W>j
+map <C-K> <C-W>k
+map <C-L> <C-W>l
+
 map <Leader>a :Ack<Space>
 map <Leader>de o debugger<cr>puts 'debugger'<esc>:w<cr>
 map <Leader>g :CommandT<CR>
