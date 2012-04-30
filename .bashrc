@@ -37,6 +37,7 @@ alias grb='git rb'
 alias gwtf='~/bin/git-wtf'
 alias gsm='~/bin/git-show-merges'
 alias bump='bundle update --source'
+alias mongoprefix='brew --prefix mongodb'
 
 alias ls='ls -G'
 alias ll='ls -ahl'
@@ -54,11 +55,14 @@ alias smvim="sudo /Applications/MacVim.app/Contents/MacOS/MacVim"
 alias psg="ps aux |grep'"
 alias vim="/Applications/MacVim.app/Contents/MacOS/Vim"
 alias htree="tree -H $(pwd) -o ~/.htree && open ~/.htree"
-alias mdb="mongod run --config $(brew --prefix mongodb)/mongod.conf"
+alias mdb="mongod run --config $(brew --prefix mongodb)/mongod.conf --profile=1 --slowms=15 --diaglog 0"
 # alias gempath="gem environment |grep INSTALLATION | awk {'print $4'}"
 #env vars
 export AUTOSSH_POLL=15
 export USER="Dave"
+
+#java classpath
+export CLASSPATH
 
 #PATH
 export PATH=$HOME/.rbenv/bin
